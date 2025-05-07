@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  vllm-server:
+    build: .
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    # environment:
+    #   - HF_TOKEN=your_huggingface_token  # Needed for gated models
+    volumes:
+      - ./cache:/root/.cache/huggingface
