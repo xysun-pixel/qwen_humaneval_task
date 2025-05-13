@@ -19,17 +19,12 @@ bulid_and_run.sh
 相关文件：
 eval_humaneval.py
 从本地读取 HumanEval.json，构造 prompt，通过 POST 请求调用 vLLM 模型 API（localhost:8000/v1/completions），生成答案。
-输出写入 humaneval_results.json。
+输出写入 humaneval_results.jsonl_results.jsonl。
 
 run.sh
 只是运行上面的脚本：python eval_humaneval.py。
 
 
 （三）结果评估：计算 pass@1 分数
-相关文件：
-evaluation_script.py
-加载上一步推理生成的 humaneval_results.json，整理为标准格式（写成 samples.jsonl），并使用 human_eval.evaluation.evaluate_functional_correctness 评估函数功能正确率，输出 pass@1 分数。
-
-run_evaluation.sh
-构建评估用 Docker 镜像（Dockerfile.eval，你命名为 evaluation.dockerfile），并运行评估脚本容器。
+pass@1 = 0.0122
 
